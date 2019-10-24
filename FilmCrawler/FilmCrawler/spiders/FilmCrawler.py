@@ -4,7 +4,7 @@ from FilmCrawler.items import FilmcrawlerItem
 
 class FilmCrawler(scrapy.Spider):
     name = 'filmCrawler'
-    start_urls = ['http://www.phimmoi.net/phim-le/','http://www.phimmoi.net/phim-bo/']
+    start_urls = ['http://www.phimmoi.net/phim-le/', 'http://www.phimmoi.net/phim-bo/']
 
     def parse(self, response):
         film_list = response.xpath('//ul[@class="list-movie"]/li')
@@ -27,6 +27,7 @@ class FilmCrawler(scrapy.Spider):
             '//div[@class="block-movie-info movie-info-box"]//a[@class="director"]/text()').getall()
         items['country'] = response.xpath(
             '//div[@class="block-movie-info movie-info-box"]//a[@class="country"]/text()').getall()
+        items['content'] = response.xpath('//div[@id="film-content"]//text()').get()
         items['tag'] = response.xpath(
             '//div[@class="block-movie-info movie-info-box"]//a[@class="category"]/text()').getall()
         items['url'] = response.xpath(

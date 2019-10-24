@@ -13,6 +13,7 @@ class FilmcrawlerItem(scrapy.Item):
     vname = scrapy.Field()
     ename = scrapy.Field()
     director = scrapy.Field()
+    content = scrapy.Field()
     country = scrapy.Field()
     tag = scrapy.Field()
     url = scrapy.Field()
